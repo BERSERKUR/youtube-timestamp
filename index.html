@@ -4,52 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Timestamp Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        main {
-            text-align: center;
-            padding: 50px 20px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-            width: 250px;
-        }
-        #output {
-            margin-top: 20px;
-        }
-        .error {
-            color: red;
-        }
-        .result {
-            margin-top: 20px;
-            background-color: #e0f7fa;
-            padding: 15px;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -57,17 +12,19 @@
     </header>
 
     <main>
-        <p>Enter a YouTube video URL and the time (hours, minutes, seconds) to jump to:</p>
-        
-        <input type="text" id="youtubeLink" placeholder="Enter YouTube URL" size="50">
-        <br>
-        <input type="number" id="hours" placeholder="Hours" min="0">
-        <input type="number" id="minutes" placeholder="Minutes" min="0" max="59">
-        <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
-        <br>
-        <button onclick="generateTimestamp()">Generate Timestamp Link</button>
-        
-        <div id="output"></div>
+        <div class="container">
+            <p>Enter a YouTube video URL and the time (hours, minutes, seconds) to jump to:</p>
+
+            <input type="text" id="youtubeLink" placeholder="Enter YouTube URL" size="50">
+            <br>
+            <input type="number" id="hours" placeholder="Hours" min="0">
+            <input type="number" id="minutes" placeholder="Minutes" min="0" max="59">
+            <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
+            <br>
+            <button onclick="generateTimestamp()">Generate Timestamp Link</button>
+
+            <div id="output"></div>
+        </div>
     </main>
 
     <footer>

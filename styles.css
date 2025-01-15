@@ -1,3 +1,4 @@
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,32 +7,101 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: linear-gradient(to bottom right, #1e2a47, #4f5d74);
+    background-size: cover;
 }
 
+/* Container for content */
 .container {
     text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
 }
 
+/* Header styling */
+header {
+    text-align: center;
+    color: #fff;
+    padding: 30px 20px;
+    font-size: 2em;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Input fields styling */
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    width: 250px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button styling */
 button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 16px;
     color: white;
     background: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     background: #0056b3;
 }
 
-#responseText {
+/* Result box styling */
+.result {
     margin-top: 20px;
-    font-size: 18px;
+    background-color: #e0f7fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.error {
+    color: red;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Smooth hover for input fields */
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Smooth button hover */
+button:focus {
+    outline: none;
 }
