@@ -80,11 +80,12 @@ button:hover {
     border-radius: 5px;
 }
 
+/* Error message styling */
 .error {
     color: red;
 }
 
-/* Animation */
+/* Animation for container fade-in */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -104,4 +105,15 @@ input[type="number"]:focus {
 /* Smooth button hover */
 button:focus {
     outline: none;
+}
+
+/* Styling for the copied link */
+.copy-link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.copy-link:hover {
+    color: #0056b3;
 }

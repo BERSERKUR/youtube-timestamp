@@ -59,7 +59,9 @@
                 const timestampURL = `https://www.youtube.com/watch?v=${videoID}&t=${totalSeconds}s`;
                 document.getElementById('output').innerHTML = `
                     <div class="result">
-                        <p>Generated URL: <a href="${timestampURL}" target="_blank">${timestampURL}</a></p>
+                        <p>Generated URL: 
+                            <span class="copy-link" onclick="copyToClipboard('${timestampURL}')">${timestampURL}</span>
+                        </p>
                     </div>
                 `;
             } else {
@@ -67,6 +69,14 @@
                     <p class="error">Please enter a valid YouTube URL.</p>
                 `;
             }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Timestamp link copied to clipboard!');
+            }).catch(function(err) {
+                alert('Failed to copy: ' + err);
+            });
         }
     </script>
 </body>
