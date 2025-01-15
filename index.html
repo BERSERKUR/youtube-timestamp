@@ -3,16 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example Web Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>YouTube Timestamp Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        main {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            width: 250px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Web Page</h1>
-        <button id="myButton">Click Me</button>
-        <p id="responseText"></p>
-    </div>
+    <header>
+        <h1>YouTube Timestamp Generator</h1>
+    </header>
 
-    <script src="script.js"></script>
+    <main>
+        <p>Enter a YouTube video URL and the time (hours, minutes, seconds) to jump to:</p>
+        
+        <input type="text" id="youtubeLink" placeholder="Enter YouTube URL" size="50">
+        <br>
+        <input type="number" id="hours" placeholder="Hours" min="0">
+        <input type="number" id="minutes" placeholder="Minutes" min="0" max="59">
+        <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
+        <br>
+        <button onclick="generateTimestamp()">Generate Timestamp Link</button>
+        
+        <div id="output"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 YouTube Timestamp Generator. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function generateTimestamp() {
+            const youtubeLink = document.getElementById('youtubeLink').value.trim();
+            const hours = parseInt(document.getElementById('hours').value) || 0;
+            const minutes = parseInt(document.getElementById('minutes').value) || 0;
+            const seconds = parseInt(document.getElementById('seconds').value) || 0;
+
+            if (hours < 0 || minutes < 0 || seconds < 0 || minutes >= 60 || seconds >= 60) {
+                document.getElementById('output').innerHTML = `
+                    <p class="error">Please enter valid time values: 0 ≤ minutes < 60, 0 ≤ seconds < 60.</p>
+                `;
+                return;
+            }
+
+            const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+
+            let videoID = '';
+            if (youtubeLink.includes('youtube.com')) {
+                const urlParams = new URLSearchParams(new URL(youtubeLink).search);
+                videoID = urlParams.get('v');
+            } else if (youtubeLink.includes('youtu.be')) {
+                videoID = youtubeLink.split('/').pop();
+            }
+
+            if (videoID && videoID.length > 0) {
+                const timestampURL = `https://www.youtube.com/watch?v=${videoID}&t=${totalSeconds}s`;
+                document.getElementById('output').innerHTML = `
+                    <div class="result">
+                        <p>Generated URL: <a href="${timestampURL}" target="_blank">${timestampURL}</a></p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('output').innerHTML = `
+                    <p class="error">Please enter a valid YouTube URL.</p>
+                `;
+            }
+        }
+    </script>
 </body>
 </html>
